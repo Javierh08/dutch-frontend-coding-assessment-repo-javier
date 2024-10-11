@@ -1,30 +1,33 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+<template>
+  <Header @open-cart="openCart()"></Header>
+  <Cart @open-cart="openCart()" v-if="cartOpen"></Cart>
+  <div class="container mx-auto pb-8 bg-gray-100 min-h-screen text-center">
+    <RouterView></RouterView>
+  </div>
+</template> 
+
+<script lang="ts">
+import Header from "./components/Header.vue";
+import Cart from "./components/Cart.vue";
+
+export default {
+  name: "App",
+  data() {
+    return {
+      cartOpen: false
+    }
+  },
+  components: {
+    Header,
+    Cart
+  },   
+  methods: {
+    openCart() {
+        this.cartOpen = this.cartOpen ? false : true;
+      }
+  }
+};
 </script>
 
-<template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
-</template>
-
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
 </style>
