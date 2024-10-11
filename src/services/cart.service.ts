@@ -193,7 +193,6 @@ const updateLineItem = async (cart, cartLineItem, quantity) => {
       `;
         const response:any = await request(constants.API_URL, query);
         const updatedCart = response.cartLinesUpdate.cart;
-        console.log('cart', updatedCart);
         return setCartInStorage(updatedCart);
     } catch (error) {
         if (error instanceof Error) {
